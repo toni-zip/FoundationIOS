@@ -15,11 +15,13 @@ struct NavbarView: View {
                 
                 NavigationLink("Home Page"){
                 }
+                .foregroundStyle(Color(.black))
                 NavigationLink("Pokemons"){
                 }
+                .foregroundStyle(Color(.black))
                 NavigationLink("Profile"){
-                
                 }
+                .foregroundStyle(Color(.black))
                 
             }
             

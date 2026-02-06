@@ -9,35 +9,48 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ZStack{
-            Color.red.ignoresSafeArea()
-            
-            VStack() {
+        NavigationStack {
+            ZStack{
+                Color.red.ignoresSafeArea()
                 
-                Image("TopContent")
-                    .resizable()
-                    .frame(height:130)
-                VStack{
-                    Text("YOUR DIGITAL")
-                        .font(.largeTitle)
-                        .padding(.top, 80)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.leading)
+                VStack() {
+                    Image("TopContent")
+                        .resizable()
+                        .frame(height:130)
+                    VStack{
+                        Text("YOUR DIGITAL")
+                            .font(.largeTitle)
+                            .padding(.top, 80)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                        
+                        Text("POKEDEX")
+                            .font(.largeTitle)
+                            .foregroundColor(.yellow)
+                            .fontWeight(.bold)
+                        
+                        NavigationLink {
+                            MockView()
+                        } label: {
+                            Rectangle()
+                                .frame(width: 180, height: 60)
+                                .foregroundColor(.white)
+                                .cornerRadius(50)
+                                .overlay(
+                                    Text("Catch em All!")
+                                        .foregroundColor(.black)
+                                        .fontWeight(.semibold)
+                                )
+                        }
+                    }
+                    Spacer()
+                    NavbarView(color: .red)
                     
-                    Text("POKEDEX")
-                        .font(.largeTitle)
-                        .foregroundColor(.yellow)
-                        .multilineTextAlignment(.leading)
-                    
-    
                 }
-                Spacer()
-                NavbarView(color: .red)
                 
             }
-            
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
