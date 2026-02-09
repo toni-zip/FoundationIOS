@@ -16,7 +16,12 @@ struct Pokemon : Codable , Identifiable{
 struct PokemonListResponse : Codable {
     let results: [Pokemon]
 }
-
-struct PokemonDetails : Codable {
     
+struct PokemonDetailsResponse : Codable{
+    let Sprites : Sprites
+}
+
+
+struct Sprites : Codable {
+    let frontDefault: String
 }

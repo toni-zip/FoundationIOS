@@ -9,31 +9,39 @@ import SwiftUI
 
 struct MockView: View {
     @State var pokemons: [Pokemon]?
+    
     var body: some View {
         NavigationStack {
+            
+                
                 if let pokemons {
-                    List(pokemons){
-                        Text($0.name)
+                    List(pokemons){ pokemon in
+                        NavigationLink{
+                            PokemonDetailsView(pokeName: pokemon.name)
+                        }
+                        label: {
+                            Text(pokemon.name)
+                        }
                     }
                 } else {
                     ProgressView()
+                }
+                
             }
-            
-        }
-        .task {
-            do {
-                pokemons = try await PokeAPI.getPokemonList()
-                
-                
-            } catch {
-                print("Erro ao  consultar api ", error.localizedDescription)
+            .task {
+                do {
+                    pokemons = try await PokeAPI.getPokemonList()
+                    
+                } catch {
+                    print("Erro ao  consultar api ", error.localizedDescription)
+                }
             }
         }
     }
-}
+    
+    struct SwiftUIView_Previews: PreviewProvider {
+        static var previews: some View {
+            MockView()
+        }
+    }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        MockView()
-    }
-}
