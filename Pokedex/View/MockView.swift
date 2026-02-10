@@ -1,47 +1,40 @@
-//
-//  MockView.swift
-//  Pokedex
-//
-//  Created by PokeGroup on 06/02/26.
-//
-
 import SwiftUI
 
 struct MockView: View {
-    @State var pokemons: [Pokemon]?
-    
+    @State private var pokemons: [Pokemon]?
+
     var body: some View {
         NavigationStack {
-            
-                
+            Group {
                 if let pokemons {
-                    List(pokemons){ pokemon in
-                        NavigationLink{
+                    List(pokemons) { pokemon in
+                        NavigationLink {
                             PokemonDetailsView(pokeName: pokemon.name)
+                        } label: {
+                            PokemonCardView(pokemon: pokemon)
                         }
-                        label: {
-                            Text(pokemon.name)
-                        }
+                        .listRowSeparator(.hidden)
                     }
+                    .listStyle(.plain)
                 } else {
-                    ProgressView()
+                    ProgressView("Carregando Pokémons...")
                 }
-                
+                Spacer()
+                NavbarView(color: .white)
             }
-            .task {
-                do {
-                    pokemons = try await PokeAPI.getPokemonList()
-                    
-                } catch {
-                    print("Erro ao  consultar api ", error.localizedDescription)
-                }
+            .navigationTitle("Pokémons")
+        }
+        .task {
+            do {
+                pokemons = try await PokeAPI.getPokemonList()
+            } catch {
+                print("Erro ao consultar API:", error.localizedDescription)
             }
         }
     }
     
-    struct SwiftUIView_Previews: PreviewProvider {
-        static var previews: some View {
-            MockView()
-        }
-    }
+}
 
+#Preview {
+    MockView()
+}

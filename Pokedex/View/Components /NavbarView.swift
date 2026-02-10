@@ -14,6 +14,7 @@ struct NavbarView: View {
             HStack(spacing: 40){
                 
                 NavigationLink("Home Page"){
+                    MockView()
                 }
                 .foregroundStyle(Color(.black))
                 NavigationLink("Pokemons"){

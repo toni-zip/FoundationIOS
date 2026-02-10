@@ -18,10 +18,43 @@ struct PokemonListResponse : Codable {
 }
     
 struct PokemonDetailsResponse : Codable{
-    let Sprites : Sprites
-}
+    let sprites : Sprites
+    let types: [TypeSlot]
+    /*let abilities: [Abilities]
+    let moves: [Move]*/
 
+}
 
 struct Sprites : Codable {
     let frontDefault: String
 }
+
+struct TypeSlot: Codable{
+    let slot: Int
+    let type: TypeDetail
+}
+
+struct TypeDetail: Codable{
+    let name: String
+
+}
+
+struct Abilities: Codable{
+    let ability: Ability
+    
+}
+
+struct Ability: Codable{
+    let name: String
+    
+}
+struct Move: Codable{
+    let moves: Moves
+    
+}
+struct Moves: Codable{
+    let name: String
+    
+}
+
+

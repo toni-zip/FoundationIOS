@@ -38,6 +38,7 @@ struct PokeAPI {
         let url = URL(string: endpoint)
         
         guard let url else {
+            print(PokeError.invalidURL.localizedDescription)
             throw PokeError.invalidURL
         }
         
@@ -45,6 +46,7 @@ struct PokeAPI {
         
         guard let response = response as? HTTPURLResponse, response.statusCode
                 == 200 else {
+            print(PokeError.invalidResponse.localizedDescription)
             throw PokeError.invalidResponse
         }
         
@@ -54,6 +56,7 @@ struct PokeAPI {
             
             return try decoder.decode(PokemonDetailsResponse.self, from: data)
         } catch {
+            print(PokeError.invalidData.localizedDescription)
             throw PokeError.invalidData
         }    }
 }
