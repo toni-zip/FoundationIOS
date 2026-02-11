@@ -7,31 +7,39 @@
 
 import SwiftUI
 struct NavbarView: View {
-    let color: Color
     
     var body: some View {
         NavigationStack {
-            HStack(spacing: 40){
+            HStack(spacing: 25){
+                NavigationLink {
+                    HomeView()
+                } label: {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
                 
-                NavigationLink("Home Page"){
-                    MockView()
+                NavigationLink {
+                    PokemonListView()
+                } label: {
+                    Image(systemName: "cricket.ball")
+                    Text("Pokémons")
                 }
-                .foregroundStyle(Color(.black))
-                NavigationLink("Pokemons"){
-                }
-                .foregroundStyle(Color(.black))
-                NavigationLink("Profile"){
-                }
-                .foregroundStyle(Color(.black))
                 
+                NavigationLink {
+                    HomeView()
+                } label: {
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
             }
+            .foregroundColor(.white.adaptiveTextColor())
             
         }
-        .frame(height: 60)
-        .background(color)
+        .frame(height: 20)
+        .background(.clear)
     }
 }
 
 #Preview {
-    NavbarView(color: .red)
+    NavbarView()
 }

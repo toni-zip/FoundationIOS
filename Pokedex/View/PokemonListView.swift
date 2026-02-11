@@ -1,6 +1,13 @@
+//
+//  PokemonListView.swift
+//  Pokedex
+//
+//  Created by João Pedro Aveiro on 10/02/26.
+//
+
 import SwiftUI
 
-struct MockView: View {
+struct PokemonListView: View {
     @State private var pokemons: [Pokemon]?
 
     var body: some View {
@@ -20,7 +27,7 @@ struct MockView: View {
                     ProgressView("Carregando Pokémons...")
                 }
                 Spacer()
-                NavbarView(color: .white)
+                NavbarView()
             }
             .navigationTitle("Pokémons")
         }
@@ -36,5 +43,5 @@ struct MockView: View {
 }
 
 #Preview {
-    MockView()
+    PokemonListView()
 }

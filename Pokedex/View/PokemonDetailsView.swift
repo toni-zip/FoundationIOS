@@ -23,17 +23,15 @@ struct PokemonDetailsView: View {
     var body: some View {
         
         Group {
-            Text(pokeName)
-
-            
             AsyncImage(url: imageURL) { image in
                 image
             } placeholder: {
                 ProgressView()
             }
-            Spacer()
-            NavbarView(color: .white)
+            Text(pokeName.capitalized)
             
+            Spacer()
+            NavbarView()
         }
         
         .task {

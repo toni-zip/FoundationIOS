@@ -24,13 +24,13 @@ struct HomeView: View {
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                         
-                        Text("POKEDEX")
+                        Text("POKÉDEX")
                             .font(.largeTitle)
                             .foregroundColor(.yellow)
                             .fontWeight(.bold)
                         
                         NavigationLink {
-                            MockView()
+                            PokemonListView()
                         } label: {
                             Rectangle()
                                 .frame(width: 180, height: 60)
@@ -44,7 +44,7 @@ struct HomeView: View {
                         }
                     }
                     Spacer()
-                    NavbarView(color: .red)
+                    NavbarView()
                     
                 }
                 

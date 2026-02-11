@@ -18,8 +18,9 @@ struct PokemonListResponse : Codable {
 }
     
 struct PokemonDetailsResponse : Codable{
-    let sprites : Sprites
+    let sprites: Sprites
     let types: [TypeSlot]
+    let id: Int
     /*let abilities: [Abilities]
     let moves: [Move]*/
 

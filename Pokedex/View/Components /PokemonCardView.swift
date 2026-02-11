@@ -31,21 +31,29 @@ struct PokemonCardView: View {
 
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(pokemon.name.capitalized)
-                    .font(.headline)
+                HStack(spacing: 0) {
+                    Text(pokemon.name.capitalized)
+                        .font(.headline)
+                    Text("#\(details?.id ?? 0)")
+                        .fontWeight(.ultraLight)
+                }
 
-
-                if let types = details?.types { //pegar o tipo dos pokemons
-                    Text(
-                        types
-                            .map { $0.type.name.capitalized }
-                            .joined(separator: " / ")
-                    )
-                    .font(.caption2)
-                    .foregroundColor(.gray)
+                if let types = details?.types {
+                    HStack(spacing: 6) {
+                        ForEach(types, id: \.type.name) { typeSlot in
+                            Text(typeSlot.type.name.capitalized)
+                                .font(.caption2)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(
+                                    Color.pokemonType(type: typeSlot.type.name)
+                                    , in: RoundedRectangle(cornerRadius: 12)
+                                )
+                        }
+                    }
                 }
             }
-
 
             Spacer()
 
