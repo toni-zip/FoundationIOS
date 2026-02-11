@@ -11,6 +11,9 @@ struct PokemonDetailsView: View {
     let pokeName: String
     @State private var pokemonDetails: PokemonDetailsResponse?
     
+    @State private var isFavorite = false
+    @State private var isInTeam = false
+    
     var body: some View {
         BackgroundView {
             VStack {
@@ -34,14 +37,33 @@ struct PokemonDetailsView: View {
             }
             
             Spacer()
-
-            .padding()
-            .task {
-                do {
-                    pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: pokeName)
-                } catch {
-                    print("Erro ao consultar detalhes do Pokémon:", error.localizedDescription)
+        }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isFavorite.toggle()
+                } label: {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                        .foregroundStyle(isFavorite ? .red : .primary)
                 }
+                
+                // Botão Time
+                Button {
+                    isInTeam.toggle()
+                } label: {
+                    Image(systemName: isInTeam ? "person.3.fill" : "person.3")
+                }
+            }
+        }
+        
+        .task {
+            do {
+                pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: pokeName)
+            } catch {
+                print("Erro ao consultar detalhes do Pokémon:", error.localizedDescription)
             }
         }
     }

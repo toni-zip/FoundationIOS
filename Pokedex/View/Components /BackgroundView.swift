@@ -19,7 +19,6 @@ struct BackgroundView<Content: View>: View {
             Image("PokemonBackground")
                 .resizable()
                 .scaledToFill()
-                .ignoresSafeArea()
             content
         }
         .ignoresSafeArea()

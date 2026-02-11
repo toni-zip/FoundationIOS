@@ -11,42 +11,35 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.red.ignoresSafeArea()
+                Image("PokemonBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
                 
-                VStack() {
-                    Image("TopContent")
+                VStack(spacing: 40) {
+                    
+                    Spacer()
+                    
+                    Image("pokedex_logo")
                         .resizable()
-                        .frame(height:130)
-                    VStack{
-                        Text("YOUR DIGITAL")
-                            .font(.largeTitle)
-                            .padding(.top, 80)
+                        .scaledToFit()
+                        .frame(width: 260)
+                    
+                    NavigationLink {
+                        PokemonListView()
+                    } label: {
+                        Text("Enter Pokédex")
+                            .fontWeight(.semibold)
+                            .frame(width: 220, height: 55)
+                            .background(Color.black)
                             .foregroundColor(.white)
-                            .fontWeight(.bold)
-                        
-                        Text("POKÉDEX")
-                            .font(.largeTitle)
-                            .foregroundColor(.yellow)
-                            .fontWeight(.bold)
-                        
-                        NavigationLink {
-                            PokemonListView()
-                        } label: {
-                            Rectangle()
-                                .frame(width: 180, height: 60)
-                                .foregroundColor(.white)
-                                .cornerRadius(50)
-                                .overlay(
-                                    Text("Catch em All!")
-                                        .foregroundColor(.black)
-                                        .fontWeight(.semibold)
-                                )
-                        }
-                    }                    
+                            .cornerRadius(30)
+                            .shadow(radius: 8)
+                    }
+                    
+                    Spacer()
                 }
-                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
