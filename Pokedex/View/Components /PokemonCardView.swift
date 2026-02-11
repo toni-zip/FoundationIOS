@@ -2,11 +2,11 @@ import SwiftUI
 
 struct PokemonCardView: View {
     let pokemon: Pokemon
-    @State private var details: PokemonDetailsResponse?
+    @State private var pokemonDetails: PokemonDetailsResponse?
 
     private var imageURL: URL? {
-        if let details {
-            return URL(string: details.sprites.frontDefault)
+        if let pokemonDetails {
+            return URL(string: pokemonDetails.sprites.frontDefault)
         }
         return nil
     }
@@ -34,11 +34,11 @@ struct PokemonCardView: View {
                 HStack(spacing: 0) {
                     Text(pokemon.name.capitalized)
                         .font(.headline)
-                    Text("#\(details?.id ?? 0)")
+                    Text("#\(pokemonDetails?.id ?? 0)")
                         .fontWeight(.ultraLight)
                 }
 
-                if let types = details?.types {
+                if let types = pokemonDetails?.types {
                     HStack(spacing: 6) {
                         ForEach(types, id: \.type.name) { typeSlot in
                             Text(typeSlot.type.name.capitalized)
@@ -67,7 +67,7 @@ struct PokemonCardView: View {
 
         .task {
             do {
-                details = try await PokeAPI.getPokemonDetails(
+                pokemonDetails = try await PokeAPI.getPokemonDetails(
                     pokemonName: pokemon.name
                 )
             } catch {

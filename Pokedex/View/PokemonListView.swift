@@ -9,28 +9,45 @@ import SwiftUI
 
 struct PokemonListView: View {
     @State private var pokemons: [Pokemon]?
-
+    @State private var searchText: String = ""
+    
+    private var filteredPokemons: [Pokemon] {
+        guard let pokemons else { return [] }
+        if searchText.isEmpty {
+            return pokemons
+        } else {
+            return pokemons.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
-            Group {
-                if let pokemons {
-                    List(pokemons) { pokemon in
-                        NavigationLink {
-                            PokemonDetailsView(pokeName: pokemon.name)
-                        } label: {
-                            PokemonCardView(pokemon: pokemon)
+            GeometryReader { geometry in
+                            BackgroundView {
+                                if let pokemons {
+                                    List(filteredPokemons) { pokemon in
+                                        NavigationLink {
+                                            PokemonDetailsView(pokeName: pokemon.name)
+                                        } label: {
+                                            PokemonCardView(pokemon: pokemon)
+                                        }
+                                        .listRowSeparator(.hidden)
+                                        .listRowBackground(Color.clear)
+                                    }
+                                    .listStyle(.plain)
+                                    .scrollContentBackground(.hidden)
+                                    .safeAreaInset(edge: .top) {
+                                        Color.clear.frame(height: geometry.size.height * 0.25)
+                                    }
+                                } else {
+                                    ProgressView("Carregando Pokemons...")
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                }
+                            }
                         }
-                        .listRowSeparator(.hidden)
+                        .navigationTitle("Pokédex")
+                        .searchable(text: $searchText, prompt: "Busque aqui!")
                     }
-                    .listStyle(.plain)
-                } else {
-                    ProgressView("Carregando Pokémons...")
-                }
-                Spacer()
-                NavbarView()
-            }
-            .navigationTitle("Pokémons")
-        }
         .task {
             do {
                 pokemons = try await PokeAPI.getPokemonList()
@@ -39,7 +56,6 @@ struct PokemonListView: View {
             }
         }
     }
-    
 }
 
 #Preview {

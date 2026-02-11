@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack {
-            ZStack{
+            ZStack {
                 Color.red.ignoresSafeArea()
                 
                 VStack() {
@@ -42,10 +42,7 @@ struct HomeView: View {
                                         .fontWeight(.semibold)
                                 )
                         }
-                    }
-                    Spacer()
-                    NavbarView()
-                    
+                    }                    
                 }
                 
             }

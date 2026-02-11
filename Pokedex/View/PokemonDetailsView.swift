@@ -9,49 +9,44 @@ import SwiftUI
 
 struct PokemonDetailsView: View {
     let pokeName: String
-    /*let type: String*/
     @State private var pokemonDetails: PokemonDetailsResponse?
     
-    private var imageURL: URL? {
-        if let pokemonDetails {
-            return URL(string: (pokemonDetails.sprites.frontDefault))
-        }
-        
-        return nil
-    }
-    
     var body: some View {
-        
-        Group {
-            AsyncImage(url: imageURL) { image in
-                image
-            } placeholder: {
-                ProgressView()
+        BackgroundView {
+            VStack {
+                Text(pokeName.capitalized)
+                    .font(.largeTitle)
+                    .bold()
+                
+                if let details = pokemonDetails {
+                    AsyncImage(url: URL(string: details.sprites.frontDefault)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                } else {
+                    ProgressView()
+                        .frame(width: 150, height: 150)
+                }
             }
-            Text(pokeName.capitalized)
             
             Spacer()
-            NavbarView()
-        }
-        
-        .task {
-            do {
-                pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: pokeName)
-                
-            } catch {
-                print("Erro ao consultar image ", error.localizedDescription)
+
+            .padding()
+            .task {
+                do {
+                    pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: pokeName)
+                } catch {
+                    print("Erro ao consultar detalhes do Pokémon:", error.localizedDescription)
+                }
             }
-            /*do{
-                pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: type)
-            }catch{
-                print("Erro ao consultar tipo")
-            }*/
-        
         }
-    
     }
-    
 }
+
 
 #Preview {
     PokemonDetailsView(pokeName: "bulbasaur")
