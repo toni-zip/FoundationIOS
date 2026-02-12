@@ -31,7 +31,6 @@ struct DashboardNavigation: View {
             .toolbar(.hidden, for: .tabBar)
 
             .navigationTitle("Pokedex")
-//        }
     }
 }
 

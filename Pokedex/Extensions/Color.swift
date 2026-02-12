@@ -31,13 +31,13 @@ extension Color {
         case "poison": return .purple
         case "ground": return .brown
         case "flying": return .teal
-        case "psychic": return .pink
-        case "bug": return .green
-        case "rock": return .orange
-        case "ghost": return .purple
-        case "dragon": return .purple
-        case "dark": return .black
-        case "steel": return .gray
+        case "psychic": return Color.pink.opacity(0.7)
+        case "bug": return Color.green.opacity(0.7)
+        case "rock": return .brown.opacity(0.6)
+        case "ghost": return Color.secondary.opacity(0.7)
+        case "dragon": return .indigo
+        case "dark": return .black.opacity(0.8)
+        case "steel": return Color.gray.opacity(0.6)
         case "fairy": return .pink
         default: return Color.secondary
         }
