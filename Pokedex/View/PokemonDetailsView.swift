@@ -61,12 +61,6 @@ struct PokemonDetailsView: View {
                 }
                 .disabled(!isInTeam && store.isTeamFull)
 
-                NavigationLink {
-                    ProfileView()
-                        .environmentObject(store)
-                } label: {
-                    Image(systemName: "person.crop.circle")
-                }
             }
         }
         .task {

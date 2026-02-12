@@ -16,11 +16,11 @@ struct DashboardNavigation: View {
                     PokemonListView()
                 }
                     .tag(1)
-                    .tabItem { Label("Pokédex", systemImage: "person.3.fill") }
+                    .tabItem { Label("Pokédex", systemImage: "text.page") }
                 
                 ProfileView()
                     .tag(2)
-                    .tabItem { Label("Profile", systemImage: "person.3.fill") }
+                    .tabItem { Label("Profile", systemImage: "person.crop.circle") }
             }
             .fullScreenCover(isPresented: $isShowingWellcomeScreen, content: {
                 HomeView(isShowingWelcomeScreen: $isShowingWellcomeScreen)
