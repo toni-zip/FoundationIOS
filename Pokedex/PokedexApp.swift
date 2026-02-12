@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PokedexApp: App {
+    @StateObject private var store = PokedexStore()
+
     var body: some Scene {
         WindowGroup {
             DashboardNavigation()
+                .environmentObject(store)
         }
     }
 }

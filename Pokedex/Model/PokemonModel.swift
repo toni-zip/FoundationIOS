@@ -10,7 +10,7 @@ import Foundation
 struct Pokemon : Codable , Identifiable{
     let name: String
     let url: String
-    var id: String {url}
+    var id: String { url.isEmpty ? name : url }
 }
 
 struct PokemonListResponse : Codable {
@@ -57,5 +57,3 @@ struct Moves: Codable{
     let name: String
     
 }
-
-

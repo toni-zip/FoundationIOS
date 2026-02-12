@@ -10,10 +10,16 @@ import SwiftUI
 struct PokemonDetailsView: View {
     let pokeName: String
     @State private var pokemonDetails: PokemonDetailsResponse?
-    
-    @State private var isFavorite = false
-    @State private var isInTeam = false
-    
+    @EnvironmentObject private var store: PokedexStore
+
+    private var isFavorite: Bool {
+        store.isFavorite(name: pokeName)
+    }
+
+    private var isInTeam: Bool {
+        store.isInTeam(name: pokeName)
+    }
+
     var body: some View {
         BackgroundView {
             VStack {
@@ -44,21 +50,27 @@ struct PokemonDetailsView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    isFavorite.toggle()
+                    store.toggleFavorite(name: pokeName)
                 } label: {
                     Image(systemName: isFavorite ? "heart.fill" : "heart")
                         .foregroundStyle(isFavorite ? .red : .primary)
                 }
-                
-                // Botão Time
+
                 Button {
-                    isInTeam.toggle()
+                    store.toggleTeam(name: pokeName)
                 } label: {
                     Image(systemName: isInTeam ? "person.3.fill" : "person.3")
                 }
+                .disabled(!isInTeam && store.isTeamFull)
+
+                NavigationLink {
+                    ProfileView()
+                        .environmentObject(store)
+                } label: {
+                    Image(systemName: "person.crop.circle")
+                }
             }
         }
-        
         .task {
             do {
                 pokemonDetails = try await PokeAPI.getPokemonDetails(pokemonName: pokeName)
@@ -72,4 +84,5 @@ struct PokemonDetailsView: View {
 
 #Preview {
     PokemonDetailsView(pokeName: "bulbasaur")
+        .environmentObject(PokedexStore())
 }
