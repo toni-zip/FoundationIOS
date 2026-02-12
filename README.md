@@ -31,7 +31,7 @@ O projeto está organizado para facilitar a manutenção:
 ## 📥 Como Rodar o Projeto
 1. Clone este repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/Pokedex.git](https://github.com/seu-usuario/Pokedex.git)
+   git clone [https://github.com/toni-zip/FoundationiOS.git](https://github.com/toni-zip/FoundationiOS.git)
 
 - Abra o arquivo Pokedex.xcodeproj no seu Xcode.
 
