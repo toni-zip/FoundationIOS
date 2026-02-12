@@ -32,6 +32,8 @@ O projeto está organizado para facilitar a manutenção:
 1. Clone este repositório:
    ```bash
    git clone https://github.com/toni-zip/FoundationiOS.git
+   ```
+
 
 - Abra o arquivo Pokedex.xcodeproj no seu Xcode.
 
