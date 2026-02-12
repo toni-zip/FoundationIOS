@@ -37,7 +37,7 @@ struct PokemonListView: View {
                                     .listStyle(.plain)
                                     .scrollContentBackground(.hidden)
                                     .safeAreaInset(edge: .top) {
-                                        Color.clear.frame(height: geometry.size.height * 0.25)
+                                        Color.clear.frame(height: geometry.size.height * 0.40)
                                     }
                                 } else {
                                     ProgressView("Carregando Pokemons...")

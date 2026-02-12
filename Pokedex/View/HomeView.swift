@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var isShowingWelcomeScreen: Bool
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,8 +27,8 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: 260)
                     
-                    NavigationLink {
-                        PokemonListView()
+                    Button {
+                        isShowingWelcomeScreen = false
                     } label: {
                         Text("Enter Pokédex")
                             .fontWeight(.semibold)
@@ -45,5 +47,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(isShowingWelcomeScreen: .constant(true))
 }
