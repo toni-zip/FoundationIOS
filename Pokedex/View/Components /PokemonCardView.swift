@@ -1,3 +1,10 @@
+//
+//  PokemonCardView.swift
+//  Pokedex
+//
+//  Created by Maria Laura Pereira on 10/02/26.
+//
+
 import SwiftUI
 
 struct PokemonCardView: View {

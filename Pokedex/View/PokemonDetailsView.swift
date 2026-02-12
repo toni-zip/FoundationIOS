@@ -44,8 +44,6 @@ struct PokemonDetailsView: View {
             
             Spacer()
         }
-        .navigationTitle("")
-        .navigationBarTitleDisplayMode(.inline)
         
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {

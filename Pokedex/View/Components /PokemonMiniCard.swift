@@ -1,6 +1,10 @@
 //
 //  PokemonMiniCard.swift
+//  Pokedex
 //
+//  Created by Maria Laura Pereira on 11/02/26.
+//
+
 
 import SwiftUI
 
@@ -50,4 +54,13 @@ struct PokemonMiniCard: View {
             }
         }
     }
+}
+
+#Preview {
+    PokemonMiniCard(
+        pokemon: Pokemon(
+            name: "bulbasaur",
+            url: "https://pokeapi.co/api/v2/pokemon/1/"
+        )
+    )
 }
