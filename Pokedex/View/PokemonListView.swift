@@ -60,5 +60,5 @@ struct PokemonListView: View {
 
 #Preview {
     PokemonListView()
-        .environmentObject(PokedexStore())
+        .environment(PokedexStore())
 }

@@ -16,17 +16,9 @@ struct PokemonMiniCardEmpty: View {
                     .fill(Color(.systemGray6))
                     .frame(height: 100)
                 
-                Image(systemName: "plus")
-                    .font(.system(size: 32))
-                    .foregroundStyle(.secondary)
-                    .frame(width: 70, height: 70)
             }
             
-            Text(title)
-                .font(.caption)
-                .fontWeight(.medium)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+    
         }
         .frame(maxWidth: .infinity)
     }

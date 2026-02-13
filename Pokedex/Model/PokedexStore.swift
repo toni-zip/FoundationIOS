@@ -4,16 +4,17 @@
 //
 //  Created by PokeGroup on 12/02/26.
 //
-
+import Observation
 import Foundation
 
-final class PokedexStore: ObservableObject {
+
+@Observable
+final class PokedexStore {
     private let maxTeamSize = 6
 
-    @Published private(set) var favoriteNames: [String] = []
-    @Published private(set) var teamNames: [String] = []
+    private(set) var favoriteNames: [String] = []
+    private(set) var teamNames: [String] = []
 
-    init() {}
 
     var favoritePokemons: [Pokemon] {
         favoriteNames.map { Pokemon(name: $0, url: "") }

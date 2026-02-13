@@ -10,7 +10,7 @@ import SwiftUI
 struct PokemonDetailsView: View {
     let pokeName: String
     @State private var pokemonDetails: PokemonDetailsResponse?
-    @EnvironmentObject private var store: PokedexStore
+    @Environment(PokedexStore.self) private var store
 
     private var isFavorite: Bool { store.isFavorite(name: pokeName) }
     private var isInTeam: Bool { store.isInTeam(name: pokeName) }
@@ -205,5 +205,5 @@ extension View {
 
 #Preview {
     PokemonDetailsView(pokeName: "charmander")
-        .environmentObject(PokedexStore())
+        .environment(PokedexStore())
 }

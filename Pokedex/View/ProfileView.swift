@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct ProfileView: View {
-    @EnvironmentObject private var store: PokedexStore
+    @Environment(PokedexStore.self) private var store
 
     private let columns = [
         GridItem(.flexible()),
@@ -75,5 +75,5 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
-        .environmentObject(PokedexStore())
+        .environment(PokedexStore())
 }

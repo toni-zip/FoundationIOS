@@ -37,5 +37,5 @@ struct DashboardNavigation: View {
 
 #Preview {
     DashboardNavigation()
-        .environmentObject(PokedexStore())
+        .environment(PokedexStore())
 }
