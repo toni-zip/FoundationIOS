@@ -7,13 +7,12 @@
 import Observation
 import Foundation
 
-
 @Observable
 final class PokedexStore {
     private let maxTeamSize = 6
 
-    private(set) var favoriteNames: [String] = []
-    private(set) var teamNames: [String] = []
+    private var favoriteNames: [String] = []
+    private var teamNames: [String] = []
 
 
     var favoritePokemons: [Pokemon] {

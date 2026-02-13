@@ -118,7 +118,6 @@ struct PokemonDetailsView: View {
     
     private var heroHeader: some View {
         ZStack(alignment: .top) {
-            
             VStack(spacing: 12) {
                 Group {
                     if let details = pokemonDetails {
@@ -190,6 +189,7 @@ extension View {
             .shadow(color: .black.opacity(0.4), radius: 20)
     }
     
+    // MARK: Cria brilho que passa sobre o círculo
     func shimmer() -> some View {
         self.overlay(
             LinearGradient(
