@@ -9,7 +9,7 @@ import Foundation
 
 struct PokeAPI {
     static func getPokemonList() async throws -> [Pokemon] {
-        let endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=151"
+        let endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
         let url = URL(string: endpoint)
         
         guard let url else {

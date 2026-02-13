@@ -17,20 +17,40 @@ struct PokemonCardView: View {
         }
         return nil
     }
+    
+    private var typeGradient: LinearGradient {
+            let colors: [Color]
+            if let types = pokemonDetails?.types, !types.isEmpty {
+                colors = types.map { Color.pokemonType(type: $0.type.name) }
+            } else {
+                colors = [.gray, .gray.opacity(0.5)]
+            }
+            
+            let finalColors = colors.count == 1 ? [colors[0], colors[0]] : colors
+            
+            return LinearGradient(
+                colors: finalColors,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        }
 
     var body: some View {
         HStack(spacing: 16) {
-
             ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.gray.opacity(0.25))
+                RoundedRectangle(cornerRadius: 100)
+                    .fill(Color.gray.opacity(0.1))
                     .frame(width: 90, height: 90)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 100)
+                            .strokeBorder(typeGradient, lineWidth: 3)
+                    )
 
-                AsyncImage(url: imageURL) { image in
+                AsyncImage(url: URL(string: pokemonDetails?.sprites.frontDefault ?? "")) { image in
                     image
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 70, height: 70)
+                        .frame(width: 75, height: 75)
                 } placeholder: {
                     ProgressView()
                 }

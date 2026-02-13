@@ -27,8 +27,13 @@ struct ProfileView: View {
                                     .padding(.horizontal)
 
                                 LazyVGrid(columns: columns, spacing: 16) {
-                                    ForEach(store.teamPokemons) { pokemon in
-                                        PokemonMiniCard(pokemon: pokemon)
+                                    if (store.teamPokemons.isEmpty) {
+                                        PokemonMiniCardEmpty(title: "Add a pokémon")
+                                    }
+                                    else {
+                                        ForEach(store.teamPokemons) { pokemon in
+                                            PokemonMiniCard(pokemon: pokemon)
+                                        }
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -43,8 +48,13 @@ struct ProfileView: View {
                                     .padding(.horizontal)
 
                                 LazyVGrid(columns: columns, spacing: 16) {
-                                    ForEach(store.favoritePokemons) { pokemon in
-                                        PokemonMiniCard(pokemon: pokemon)
+                                    if (store.favoritePokemons.isEmpty) {
+                                        PokemonMiniCardEmpty(title: "Add a pokémon")
+                                    }
+                                    else {
+                                        ForEach(store.favoritePokemons) { pokemon in
+                                            PokemonMiniCard(pokemon: pokemon)
+                                        }
                                     }
                                 }
                                 .navigationTitle("Profile")

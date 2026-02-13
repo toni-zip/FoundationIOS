@@ -21,9 +21,24 @@ struct PokemonDetailsResponse : Codable{
     let sprites: Sprites
     let types: [TypeSlot]
     let id: Int
-    /*let abilities: [Abilities]
-    let moves: [Move]*/
+    let stats: [Stats]
+    let weight: Int
+    let height: Int
+    let abilities: [Ability]
+    let forms: [Species]
+}
 
+struct Species: Codable {
+    let name: String
+}
+
+struct Stats: Codable {
+    let baseStat, effort: Int
+    let stat: Stat
+}
+
+struct Stat: Codable {
+    let name: String
 }
 
 struct Sprites : Codable {
@@ -40,20 +55,12 @@ struct TypeDetail: Codable{
 
 }
 
-struct Abilities: Codable{
-    let ability: Ability
-    
+struct Ability: Codable{
+    let isHidden: Bool
+    let slot: Int
+    let ability: AbilityDetail
 }
 
-struct Ability: Codable{
+struct AbilityDetail: Codable {
     let name: String
-    
-}
-struct Move: Codable{
-    let moves: Moves
-    
-}
-struct Moves: Codable{
-    let name: String
-    
 }
