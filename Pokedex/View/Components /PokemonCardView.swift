@@ -44,6 +44,8 @@ struct PokemonCardView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 100)
                             .strokeBorder(typeGradient, lineWidth: 3)
+                            .background(.white)
+                            .cornerRadius(100)
                     )
 
                 AsyncImage(url: URL(string: pokemonDetails?.sprites.frontDefault ?? "")) { image in
