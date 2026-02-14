@@ -15,11 +15,16 @@ struct PokemonMiniCardEmpty: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color(.systemGray6))
                     .frame(height: 100)
-                
+                Image(systemName: "plus")
+                    .foregroundColor(.black)
             }
-            
-    
+            Text(title)
+                .foregroundColor(.gray)
         }
         .frame(maxWidth: .infinity)
     }
+}
+
+#Preview {
+    PokemonMiniCardEmpty(title: "Add a pokemon")
 }

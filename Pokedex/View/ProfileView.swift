@@ -20,40 +20,101 @@ struct ProfileView: View {
             GeometryReader { Geometry in
                 BackgroundView {
                     ScrollView {
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text("My Team")
-                                    .font(.title2)
-                                    .bold()
-                                    .padding(.horizontal)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.black)
+                                .opacity(0.1)
+                                .frame(height: 130)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+                                )
 
+                            HStack(spacing: 20) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.white)
+                                        .frame(width: 80, height: 80)
+                                        .shadow(radius: 4)
+                                    
+                                    Image(systemName: "person.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 45, height: 45)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Pokémon Trainer")
+                                        .font(.caption)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.secondary)
+                                        .textCase(.uppercase)
+                                    
+                                    Text("FoundationU")
+                                        .font(.title)
+                                        .bold()
+                                    
+                                    Text("ID: #250199")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                                Spacer()
+                            }
+                            .padding(.horizontal, 30)
+                        }
+                        .padding(.horizontal)
+                        .padding(.bottom, 20)
+                        
+                        VStack(alignment: .leading, spacing: 12) {
+                                HStack {
+                                    Image(systemName: "person.3.fill")
+                                    Text("My Team (\(store.teamPokemons.count)/6)")
+                                        .font(.title2)
+                                        .bold()
+                                }.padding(.horizontal)
+                            
                                 LazyVGrid(columns: columns, spacing: 16) {
                                     if (store.teamPokemons.isEmpty) {
-                                        PokemonMiniCardEmpty(title: "Add a pokémon")
+                                        NavigationLink(destination: PokemonListView()) {
+                                            PokemonMiniCardEmpty(title: "Add a pokémon")
+                                        }
                                     }
                                     else {
                                         ForEach(store.teamPokemons) { pokemon in
-                                            PokemonMiniCard(pokemon: pokemon)
+                                            NavigationLink(destination: PokemonDetailsView(pokeName: pokemon.name)) {
+                                                PokemonMiniCard(pokemon: pokemon)
+                                            }
                                         }
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.horizontal)
                             }
+                            .padding(.vertical)
 
 
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Favorites")
-                                    .font(.title2)
-                                    .bold()
-                                    .padding(.horizontal)
+                                HStack {
+                                    Image(systemName: "heart.fill")
+                                    Text("Favorites")
+                                        .font(.title2)
+                                        .bold()
+                                }.padding(.horizontal)
+
 
                                 LazyVGrid(columns: columns, spacing: 16) {
                                     if (store.favoritePokemons.isEmpty) {
-                                        PokemonMiniCardEmpty(title: "Add a pokémon")
+                                        NavigationLink(destination: PokemonListView()) {
+                                            PokemonMiniCardEmpty(title: "Add a pokémon")
+                                        }
                                     }
                                     else {
                                         ForEach(store.favoritePokemons) { pokemon in
-                                            PokemonMiniCard(pokemon: pokemon)
+                                            NavigationLink(destination: PokemonDetailsView(pokeName: pokemon.name)) {
+                                                PokemonMiniCard(pokemon: pokemon)
+                                            }
                                         }
                                     }
                                 }

@@ -41,6 +41,7 @@ struct PokemonMiniCard: View {
             Text(pokemon.name.capitalized)
                 .font(.caption)
                 .fontWeight(.medium)
+                .foregroundColor(Color.white.adaptiveTextColor())
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .multilineTextAlignment(.center)
